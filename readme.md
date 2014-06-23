@@ -8,7 +8,7 @@
   Stop writing code like this:
 
 ```go
-func (u *User) Save() *User {
+func (u *User) Save() {
 	fmt.Println("start saving user")
 	metrics.Start("saving user")
 	Db.save(u)
@@ -33,7 +33,7 @@ $ go get github.com/olivoil/go-comment-macros
  telling comment-macros what is and what is not a macro.
 
 ```go
-func (u *User) Save() *User {
+func (u *User) Save() {
 	//: start saving user
 	user, err := Db.save(u)
 	//: end saving user
@@ -47,6 +47,8 @@ func (u *User) Save() *User {
 
 ```go
 import "github.com/olivoil/go-comment-macros"
+import "strings"
+import "fmt"
 
 m := macros.NewMacro()
 
@@ -73,11 +75,11 @@ fmt.Println(s)
   Yielding:
 
 ```go
-func (u *User) Save() *User {
+func (u *User) Save() {
 	// normal comment
 	fmt.Println("start saving user")
 	metrics.Start("saving user")
-	Db.save(u)
+	user, err := Db.save(u)
 	fmt.Println("end saving user")
 	metrics.End("saving user")
 }

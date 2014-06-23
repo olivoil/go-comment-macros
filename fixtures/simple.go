@@ -4,7 +4,7 @@ type User struct {
 	Name string
 }
 
-func (u *User) Save() *User {
+func (u *User) Save() {
 	// normal comment
 	//: start saving user
 	Db.save(u)
